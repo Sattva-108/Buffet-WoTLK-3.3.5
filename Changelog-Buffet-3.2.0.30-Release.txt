@@ -1,0 +1,17 @@
+tag 3.2.0.30-Release
+b9bf0adf22598e643551ef1da1e4f14be74c4282
+tekkub <tekkub@gmail.com>
+2009-12-05 18:21:02 -0700
+
+Weekly build
+
+
+--------------------
+
+tekkub:
+	- Weekly build 3.2.0.30-Release
+	- Update changelog for 3.2.0.30-Release
+	- Updating TOC to 30200
+	- Harvest Nectards
+	Closes #3
+	- Readme tweaks
