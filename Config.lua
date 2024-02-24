@@ -24,17 +24,37 @@ frame:SetScript("OnShow", function()
 
 	local hpbutt = tekbutt.new(frame, "TOPLEFT", subtitle, "BOTTOMLEFT", -2, -GAP)
 	hpbutt:SetText("HP Macro")
-	hpbutt.tiptext = "Generate a global macro for food, bandages, health potions and health stones."
+	hpbutt.tiptext = "Generate a global macro for food."
 	hpbutt.name = "AutoHP"
 	hpbutt:SetScript("OnClick", OnClick)
 	if InCombatLockdown() then hpbutt:Disable() end
 
 	local mpbutt = tekbutt.new(frame, "TOPLEFT", hpbutt, "TOPRIGHT", GAP, 0)
 	mpbutt:SetText("MP Macro")
-	mpbutt.tiptext = "Generate a global macro for water, mana potions and mana stones."
+	mpbutt.tiptext = "Generate a global macro for water."
 	mpbutt.name = "AutoMP"
 	mpbutt:SetScript("OnClick", OnClick)
 	if InCombatLockdown() then mpbutt:Disable() end
+
+	local hppotbutt = tekbutt.new(frame, "TOPLEFT", mpbutt, "TOPRIGHT", GAP, 0)
+	hppotbutt:SetText("HP Pot Macro")
+	hppotbutt.tiptext = "Generate a global macro for bandages, health potions and health stones."
+	hppotbutt.name = "AutoPotHP"
+	hppotbutt:SetScript("OnClick", OnClick)
+	if InCombatLockdown() then hppotbutt:Disable() end
+
+	hppotbutt:SetWidth(100)
+	hppotbutt:SetHeight(22)
+
+	local mppotbutt = tekbutt.new(frame, "TOPLEFT", hppotbutt, "TOPRIGHT", GAP, 0)
+	mppotbutt:SetText("MP Pot Macro")
+	mppotbutt.tiptext = "Generate a global macro for mana potions and mana stones."
+	mppotbutt.name = "AutoPotMP"
+	mppotbutt:SetScript("OnClick", OnClick)
+	if InCombatLockdown() then mppotbutt:Disable() end
+
+	mppotbutt:SetWidth(100)
+	mppotbutt:SetHeight(22)
 
 	local hpmacrolabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
 	hpmacrolabel:SetText("HP Macro")

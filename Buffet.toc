@@ -1,13 +1,13 @@
-## Interface: 30200
-## X-Curse-Packaged-Version: 3.2.0.30-Release
+## Interface: 30300
+## X-Curse-Packaged-Version: 3.3.5
 ## X-Curse-Project-Name: Buffet
 ## X-Curse-Project-ID: buffet
 ## X-Curse-Repository-ID: wow/buffet/mainline
 
 ## Title: Buffet
 ## Notes: Food/water macro generator
-## Author: Tekkub Stoutwrithe
-## Version: 3.2.0.30
+## Author: Tekkub Stoutwrithe, edit by Sattva
+## Version: 3.3.5
 ## X-Website: http://www.tekkub.net/
 ## X-Email: tekkub-wow@googlegroups.com
 

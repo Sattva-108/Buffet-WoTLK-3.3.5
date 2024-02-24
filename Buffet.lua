@@ -110,8 +110,16 @@ function Buffet:Scan()
 		end
 	end
 
-	self:Edit("AutoHP", self.db.macroHP, bests.conjfood.id or bests.percfood.id or bests.food.id or bests.hstone.id or bests.hppot.id, bests.hppot.id, bests.hstone.id, bests.bandage.id)
-	self:Edit("AutoMP", self.db.macroMP, bests.conjwater.id or bests.percwater.id or bests.water.id or bests.mstone.id or bests.mppot.id, bests.mppot.id, bests.mstone.id)
+	--self:Edit("AutoHP", self.db.macroHP, bests.conjfood.id or bests.percfood.id or bests.food.id or bests.hstone.id or bests.hppot.id, bests.hppot.id, bests.hstone.id, bests.bandage.id)
+	self:Edit("AutoHP", self.db.macroHP, bests.conjfood.id or bests.percfood.id or bests.food.id)
+	self:Edit("AutoPotHP", self.db.macroHP, bests.hstone.id or bests.hppot.id, bests.hppot.id, bests.hstone.id, bests.bandage.id)
+
+
+	--self:Edit("AutoMP", self.db.macroMP, bests.conjwater.id or bests.percwater.id or bests.water.id or bests.mstone.id or bests.mppot.id, bests.mppot.id, bests.mstone.id)
+	self:Edit("AutoMP", self.db.macroMP, bests.conjwater.id or bests.percwater.id or bests.water.id)
+	self:Edit("AutoPotMP", self.db.macroMP, bests.mstone.id or bests.mppot.id, bests.mppot.id, bests.mstone.id)
+
+
 	dirty = false
 end
 
