@@ -50,12 +50,34 @@ function Buffet:ADDON_LOADED(event, addon)
 
 	BuffetDB = setmetatable(BuffetDB or {}, {__index = defaults})
 	self.db = BuffetDB
+	self.db.ignoreList = self.db.ignoreList or {}
 
 	self:UnregisterEvent("ADDON_LOADED")
 	self.ADDON_LOADED = nil
 
 	if IsLoggedIn() then self:PLAYER_LOGIN() else self:RegisterEvent("PLAYER_LOGIN") end
 end
+
+-- Handle Alt + click event
+function Buffet:ALT_CLICK_ITEM(bag, slot)
+	local link = GetContainerItemLink(bag, slot)
+	local id = link and ids[link]
+	if id and IsAltKeyDown() and not self.db.ignoreList[id] == true then
+		-- Add item ID to ignoreList
+		self.db.ignoreList[id] = true
+		self:Print("Item with ID "..id.." added to ignore list.")
+		Buffet:BAG_UPDATE()
+	else
+		self.db.ignoreList[id] = false
+		self:Print("Item with ID "..id.." removed from ignore list.")
+		Buffet:BAG_UPDATE()
+	end
+end
+
+hooksecurefunc("ContainerFrameItemButton_OnModifiedClick",function(self,button)
+	local bag,slot=self:GetParent():GetID(),self:GetID();
+	Buffet:ALT_CLICK_ITEM(bag, slot)
+end);
 
 
 function Buffet:PLAYER_LOGIN()
@@ -98,7 +120,7 @@ function Buffet:Scan()
 			local link = GetContainerItemLink(bag, slot)
 			local id = link and ids[link]
 			local reqlvl = link and select(5, GetItemInfo(link)) or 0
-			if id and allitems[id] and reqlvl <= mylevel then
+			if id and allitems[id] and reqlvl <= mylevel and not self.db.ignoreList[id] then
 				local _, stack = GetContainerItemInfo(bag,slot)
 				for set,setitems in pairs(items) do
 					local thisbest, val = bests[set], setitems[id]
