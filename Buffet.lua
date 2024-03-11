@@ -68,9 +68,11 @@ function Buffet:ALT_CLICK_ITEM(bag, slot)
 		self:Print("Item with ID "..id.." added to ignore list.")
 		Buffet:BAG_UPDATE()
 	else
-		self.db.ignoreList[id] = false
-		self:Print("Item with ID "..id.." removed from ignore list.")
-		Buffet:BAG_UPDATE()
+		if id and IsAltKeyDown() then
+			self.db.ignoreList[id] = false
+			self:Print("Item with ID "..id.." removed from ignore list.")
+			Buffet:BAG_UPDATE()
+		end
 	end
 end
 
