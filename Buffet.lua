@@ -58,6 +58,10 @@ function Buffet:ADDON_LOADED(event, addon)
 	if IsLoggedIn() then self:PLAYER_LOGIN() else self:RegisterEvent("PLAYER_LOGIN") end
 end
 
+-----------------------------
+--      Ignore Items       --
+-----------------------------
+
 -- Handle Alt + click event
 function Buffet:ALT_CLICK_ITEM(bag, slot)
 	local link = GetContainerItemLink(bag, slot)
