@@ -66,13 +66,13 @@ end
 function Buffet:ALT_CLICK_ITEM(bag, slot)
 	local link = GetContainerItemLink(bag, slot)
 	local id = link and ids[link]
-	if id and IsAltKeyDown() and not self.db.ignoreList[id] == true then
-		-- Add item ID to ignoreList
-		self.db.ignoreList[id] = true
-		self:Print("Item with ID "..id.." added to ignore list.")
-		Buffet:BAG_UPDATE()
-	else
-		if id and IsAltKeyDown() then
+	if id and IsAltKeyDown() then
+		if not self.db.ignoreList[id] == true then
+			-- Add item ID to ignoreList
+			self.db.ignoreList[id] = true
+			self:Print("Item with ID "..id.." added to ignore list.")
+			Buffet:BAG_UPDATE()
+		else
 			self.db.ignoreList[id] = false
 			self:Print("Item with ID "..id.." removed from ignore list.")
 			Buffet:BAG_UPDATE()
@@ -81,8 +81,10 @@ function Buffet:ALT_CLICK_ITEM(bag, slot)
 end
 
 hooksecurefunc("ContainerFrameItemButton_OnModifiedClick",function(self,button)
-	local bag,slot=self:GetParent():GetID(),self:GetID();
-	Buffet:ALT_CLICK_ITEM(bag, slot)
+	if button == "LeftButton" then
+		local bag,slot=self:GetParent():GetID(),self:GetID();
+		Buffet:ALT_CLICK_ITEM(bag, slot)
+	end
 end);
 
 
